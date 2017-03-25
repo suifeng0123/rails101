@@ -10,15 +10,15 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
      end
 
-         def update
-         @group = Group.find(params[:id])
-
-         @group.update(group_params)
-
-         redirect_to groups_path, notice: "Update Success"
-         end
-
-
+     def update
+   @group = Group.find(params[:id])
+   if @group.update(group_params)
+     redirect_to groups_path, notice: "Update Success"
+   else
+     render :edit
+   end
+ end
+ 
 
 
     def new
